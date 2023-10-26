@@ -16,6 +16,7 @@ public class BFCalculator {
 
   public BFCalculator(){
     this.registers = new BigFraction[26];
+    this.lastValue = new BigFraction(0); // initializes lastValue
   }
 
   /**
@@ -25,7 +26,7 @@ public class BFCalculator {
    */
   public void store(char register){
     int numRegister = (int) register - 97;
-    registers[numRegister] = lastValue;
+    this.registers[numRegister] = this.lastValue;
   }
  
   /**
@@ -51,7 +52,7 @@ public class BFCalculator {
       if(isAlpha){
         char[] tempCharArray = argumentArray[i].toCharArray();
         char charReg = tempCharArray[0];
-        newArgumentArray[i] = registers[charReg - 97];
+        newArgumentArray[i] = this.registers[charReg - 97];
       } else {
         newArgumentArray[i] = new BigFraction(argumentArray[i]);
       }
